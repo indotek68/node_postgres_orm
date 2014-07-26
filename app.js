@@ -1,7 +1,7 @@
 var express = require('express'),
   bodyParser = require('body-parser'),
   methodOverride = require('method-override'),
-  People = require('./models/main.js').People,
+  Person = require('./models/main.js').Person,
   app = express();
 
 
@@ -15,7 +15,10 @@ app.use(methodOverride("_method"));
 
 
 app.get("/people", function(req, res){
-  res.render("people/index", {people: []})
+  Person.all(function(err, people){
+    console.log("from app.js " + people)
+    res.render("people/index", {people: people})
+    })
 });
 
 app.get("/people/new", function(req, res){

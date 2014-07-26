@@ -4,6 +4,14 @@
   </head>
   <body>
     People Index
-
+    <div>
+    	<ul>
+    		<div class=list>
+      			<% people.forEach(function(person){ %>
+      			<li><%= person.firstname + " " + person.lastname %></li>
+  				<% }) %>
+      		</div>
+    	</ul>
+    </div>
   </body>
 </html>
