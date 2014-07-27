@@ -64,6 +64,14 @@ app.delete("/people/:id", function(req, res){
 app.put("/people/:id", function(req,res){
   var firstName = req.body.person.firstname;
   var lastName = req.body.person.lastname;
+  var id = Number(req.params.id);
+
+  Person.findBy("id", id, function(err, foundPerson){
+    console.log(req.body.person)
+    foundPerson.update({firstname: firstName, lastname: lastName}, function(err, foundPerson){
+      console.log(foundPerson);
+    })
+  })
   res.redirect("/people");
 })
 
