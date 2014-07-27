@@ -8,6 +8,7 @@ function Person(params) {
 
 
 Person.all = function(callback){
+  
   db.query("SELECT * FROM people ORDER BY firstname",[], function(err, res){
     var allPeople = [];
     // do something here with res

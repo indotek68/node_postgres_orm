@@ -10,6 +10,7 @@ app.set("view engine", "ejs");
 // Middleware
 app.use(bodyParser.urlencoded());
 app.use(methodOverride("_method"));
+app.use(express.static(__dirname + '/public'));
 
 
 
