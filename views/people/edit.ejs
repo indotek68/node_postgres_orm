@@ -3,6 +3,12 @@
   <head>
   </head>
   <body>
+    <form method="post" action="/person/<%= person.id %>?_method=put">
+      <input type="text" name="person[firstname]" value="<%= person.firstname %>"><br>
 
+      <input type="text" name="person[lastname]" value="<%= person.lastname %>"><br>
+      <button>SAVE</button>
+    </form>
+    <p>This Works</p>
   </body>
 </html>

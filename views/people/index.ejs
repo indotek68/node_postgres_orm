@@ -5,13 +5,14 @@
   <body>
     People Index
     <div>
-    	<ul>
-    		<div class=list>
+      <div class=list>
+    	  <ul>
       			<% people.forEach(function(person){ %>
-      			<li><%= person.firstname + " " + person.lastname %></li>
+      			<li><a href="people/<%= person.id %>"><%= person.firstname + " " + person.lastname %></a></li>
   				<% }) %>
-      		</div>
-    	</ul>
+    	   </ul>
+         <a href="/people/new">Add New</a>
+      </div>
     </div>
   </body>
 </html>

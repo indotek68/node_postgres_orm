@@ -16,9 +16,8 @@ app.use(methodOverride("_method"));
 
 app.get("/people", function(req, res){
   Person.all(function(err, people){
-    console.log("from app.js " + people)
     res.render("people/index", {people: people})
-    })
+    });
 });
 
 app.get("/people/new", function(req, res){
@@ -26,24 +25,45 @@ app.get("/people/new", function(req, res){
 });
 
 app.get("/people/:id", function(req,res){
-  res.render("people/show", {person: {} });
+  var id = Number(req.params.id);
+
+  Person.findBy("id", id, function(err, foundPerson){
+    res.render("people/show", {person: foundPerson })
+  });
 });
 
 app.get("/people/:id/edit", function(req,res){
-  res.render("people/edit", {person: {} });
+  var id = Number(req.params.id);
+
+  Person.findBy("id", id, function(err, foundPerson){
+    res.render("people/edit", {person: foundPerson })
+  });
 });
 
 
 
 app.post("/people", function(req, res){
+  var createdPerson = req.body.person;
+  var id = Number(req.params.id);
+  Person.create(createdPerson, function(err, newPerson){
+  });
   res.redirect("/people")
 });
 
 app.delete("/people/:id", function(req, res){
+  var id = Number(req.params.id);
+  Person.findBy("id", id, function(err, foundPerson){
+    //console.log(Object.getOwnPropertyNames(foundPerson))
+    foundPerson.destroy(function(err){
+      console.log("Deleted " + id)
+    });
+  })
   res.redirect("/people");
 });
 
 app.put("/people/:id", function(req,res){
+  var firstName = req.body.person.firstname;
+  var lastName = req.body.person.lastname;
   res.redirect("/people");
 })
 
